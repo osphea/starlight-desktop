@@ -1,47 +1,170 @@
+/*
+Copyright 2019 The dahliaOS Authors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+//import 'package:GeneratedApp/applications/calculator.dart';
+//import 'package:GeneratedApp/applications/editor.dart';
+//import 'package:GeneratedApp/applications/welcome.dart';
+//import 'package:GeneratedApp/applications/monitor.dart';
+//import 'package:GeneratedApp/applications/files.dart';
+//import 'package:GeneratedApp/localization/localization.dart';
+//import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'quick_settings.dart';
+//import 'window_space.dart';
+//import 'dart:async';
 import 'package:flutter/material.dart';
+//import 'package:intl/intl.dart';
+//import 'menu.dart';
+//import 'themes/dynamic_theme.dart';
+//import 'themes/main.dart';
+import 'package:flutter/services.dart';
+//import 'widgets/system_overlay.dart';
+//import 'widgets/toggle.dart';
+//import 'launcher_toggle.dart';
+//import 'status_tray.dart';
+//import 'app_toggle.dart';
+//import 'launcher.dart';
+//import 'window/model.dart';
+import 'dart:ui';
+import 'taskbar.dart'; 
+//import 'package:provider/provider.dart';
+//import 'widgets/app_launcher.dart';
+//import 'applications/calculator.dart';
+//import 'applications/editor.dart';
+//import 'applications/terminal.dart';
+//import 'settings.dart';
+//import 'commons/key_ring.dart';
+//import 'commons/functions.dart';
+
+// * This code defines stuff needed for window space and quick settings and launcher
+//WindowsData provisionalWindowData = new WindowsData();
+//final GlobalKey<ToggleState> _launcherToggleKey = GlobalKey<ToggleState>();
+//final GlobalKey<SystemOverlayState> _launcherOverlayKey =
+//    GlobalKey<SystemOverlayState>();
+//final GlobalKey<ToggleState> _statusToggleKey = GlobalKey<ToggleState>();
+//final GlobalKey<SystemOverlayState> _statusOverlayKey =
+//    GlobalKey<SystemOverlayState>();
+//final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+//final Tween<double> _overlayOpacityTween = Tween<double>(begin: 0.0, end: 1.0);
+
+/// Hides all overlays except [except] if applicable.
+//void _hideOverlays({GlobalKey<SystemOverlayState> except}) {
+//  <GlobalKey<SystemOverlayState>>[
+//    _launcherOverlayKey,
+//    _statusOverlayKey,
+//  ].where((GlobalKey<SystemOverlayState> overlay) => overlay != except).forEach(
+//      (GlobalKey<SystemOverlayState> overlay) =>
+//          overlay.currentState.visible = false);
+//}
+
+/// Sets the given [overlay]'s visibility to [visible].
+/// When showing an overlay, this also hides every other overlay.
+//void _setOverlayVisibility({
+//  @required GlobalKey<SystemOverlayState> overlay,
+//  @required bool visible,
+//}) {
+//  if (visible) {
+//    _hideOverlays(except: overlay);
+//  }
+//  overlay.currentState.visible = visible;
+//}
+
+/// * This code adds apps to bottom panel
+//List<AppLauncherPanelButton> testLaunchers = [
+//  AppLauncherPanelButton(
+//      app: Calculator(), icon: 'lib/images/icons/v2/compiled/calculator.png'),
+//  AppLauncherPanelButton(
+//      app: TextEditorApp(), icon: 'lib/images/icons/v2/compiled/notes.png'),
+//  AppLauncherPanelButton(
+//      app: Terminal(), icon: 'lib/images/icons/v2/compiled/terminal.png'),
+//  AppLauncherPanelButton(
+//    icon: 'lib/images/icons/v2/compiled/files.png',
+//    appExists: false,
+//  ),
+//  AppLauncherPanelButton(
+//      app: Settings(), icon: 'lib/images/icons/v2/compiled/settings.png'),
+//];
 
 void main() {
-  runApp(MyApp());
+  /// To keep app in Portrait Mode
+  //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
+  runApp(Pangolin());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class Pangolin extends StatefulWidget {
+  @override
+  _PangolinState createState() => _PangolinState();
+// localization, don't need that yet'
+//  static void setLocale(BuildContext context, Locale locale) {
+//    _PangolinState state = context.findAncestorStateOfType<_PangolinState>();
+//    state.setLocale(locale);
+//  }
+}
+
+class _PangolinState extends State<Pangolin> {
+// localization, don't need that yet '
+//  Locale _locale;
+
+//  void setLocale(Locale locale) {
+//    setState(() {
+//      _locale = locale;
+//    });
+//  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    //Gets DahliaOS UI set up in a familiar way.
+
+//    return ChangeNotifierProvider<WindowsData>(
+//      create: (context) => provisionalWindowData,
+//      child: DynamicTheme(
+//        defaultBrightness: Brightness.light,
+//        data: (Brightness brightness) => ThemeData(
+//          primarySwatch: Colors.deepOrange,
+//          accentColor: Colors.deepOrange,
+//          brightness: brightness,
+//          canvasColor: Colors.black.withOpacity(0.5),
+//          primaryColor: const Color(0xFFff5722),
+//        ),
+//        loadBrightnessOnStart: true,
+//        themedWidgetBuilder: (BuildContext context, ThemeData theme) {
+          return MaterialApp(
+            title: 'Pangolin Desktop',
+            //theme: theme,
+            home: MyHomePage(title: 'Pangolin Desktop'),
+//            supportedLocales: [
+//              Locale("en", ""),
+//              Locale("de", ""),
+//            ],
+//            localizationsDelegates: [
+//              Localization.delegate,
+//              GlobalMaterialLocalizations.delegate,
+//              GlobalWidgetsLocalizations.delegate,
+//              GlobalCupertinoLocalizations.delegate,
+//            ],
+//            locale: _locale,
+          );
+//        },
+//      ),
+//    );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -50,68 +173,229 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  //final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+  //final Tween<double> _overlayOpacityTween =
+      //Tween<double>(begin: 0.0, end: 1.0);
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  //String _timeString;
+  /*@override
+  void initState() {
+    _timeString = _formatDateTime(DateTime.now());
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+        body: Stack(
+      fit: StackFit.passthrough,
+      children: <Widget>[
+        // 1 - Desktop background image
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/somethingelse.jpg"),
+              fit: BoxFit.cover,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+
+        // 2 - Example usage of windows widgets
+        //WindowPlaygroundWidget(),
+        /*Window(
+              initialPosition: Offset.fromDirection(350.0,-40.0),
+              initialSize: Size(355,628),
+              child: Container(
+                color: Colors.deepOrange[200],
+              ),
+              color: Colors.deepOrange
+            ),
+            Window(
+              initialPosition: Offset.fromDirection(350.0,-40.0),
+              initialSize: Size(355,628),
+              child: Container(color: Colors.deepPurple[200]),
+              color: Colors.deepPurple //Calculator(),
+            ),*/
+
+        // 3 - Launcher Panel
+//        SystemOverlay(
+//          key: KeyRing.launcherOverlayKey,
+//          builder: (Animation<double> animation) => Center(
+//            child: AnimatedBuilder(
+//              animation: animation,
+//              builder: (BuildContext context, Widget child) => FadeTransition(
+//                opacity: _overlayOpacityTween.animate(animation),
+//                child: ScaleTransition(
+//                  scale: _overlayScaleTween.animate(animation),
+//                  child: child,
+//                ),
+//              ),
+//              child: ClipRRect(
+//                //borderRadius: BorderRadius.circular(5.0),//THIS IS THE ROUNDING OF THE LAUNCHER INCASE YOU WANT IT TO CHANGE
+//                child: Container(
+//                    padding: const EdgeInsets.all(0.0),
+//                    alignment: Alignment.center,
+//                    width: 1.7976931348623157e+308,
+//                    height: 1.7976931348623157e+308,
+//                    child: LauncherWidget() //Launcher(),
+//                    ),
+//              ),
+//            ),
+//          ),
+//          callback: (bool visible) {
+//            KeyRing.launcherToggleKey.currentState.toggled = visible;
+//          },
+//        ),
+
+        // 4 - Quick settings panel
+//        SystemOverlay(
+//          key: KeyRing.statusOverlayKey,
+//          builder: (Animation<double> animation) => Positioned(
+//            right: 5.0,
+//            bottom: 55.0,
+//            child: AnimatedBuilder(
+//              animation: animation,
+//              builder: (BuildContext context, Widget child) => FadeTransition(
+//                opacity: _overlayOpacityTween.animate(animation),
+//                child: ScaleTransition(
+//                  scale: _overlayScaleTween.animate(animation),
+//                  alignment: FractionalOffset.bottomRight,
+//                  child: child,
+//                ),
+//              ),
+//              child: ClipRRect(
+//                borderRadius: BorderRadius.circular(5.0),
+//                child: Stack(children: [
+//                  BackdropFilter(
+//                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+//                    child: Container(
+//                      decoration:
+//                          BoxDecoration(color: Colors.black.withOpacity(0.75)),
+//                      child: QuickSettings(),
+//                    ),
+//                  ),
+//                ]),
+//              ),
+//            ),
+//          ),
+//          callback: (bool visible) {
+//            KeyRing.statusToggleKey.currentState.toggled = visible;
+//          },
+//        ),
+
+        // 5 - The bottom bar
+        Positioned(
+          left: 0.0,
+          right: 0.0,
+          bottom: 20.0,
+          child: Center(
+            child: Taskbar(
+            ),
+          ),
+        )
+        ],
+        ));
   }
+//              //color: Color.fromARGB(150, 0, 0, 0),
+//              decoration: BoxDecoration(
+//                color: Color.fromARGB(150, 0, 0, 0),
+//              ),
+//              height: 50.0,
+//              padding: const EdgeInsets.all(8.0),
+//              child: Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                crossAxisAlignment: CrossAxisAlignment.center,
+//                children: <Widget>[
+//                  Row(
+//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                      mainAxisSize: MainAxisSize.max,
+//                      crossAxisAlignment: CrossAxisAlignment.start,
+//                      children: <Widget>[
+//                        LauncherToggleWidget(
+//                          toggleKey: KeyRing.launcherToggleKey,
+//                          callback: toggleCallback,
+//                        ),
+//                        AppLauncherPanelButton(
+//                          app: Calculator(),
+//                          icon: 'lib/images/icons/v2/compiled/calculator.png',
+//                          color: Colors.green,
+//                          callback: toggleCallback,
+//                        ),
+//                        AppLauncherPanelButton(
+//                            app: TextEditorApp(),
+//                            icon: 'lib/images/icons/v2/compiled/notes.png',
+//                            color: Colors.amber[700],
+//                            callback: toggleCallback),
+//                        AppLauncherPanelButton(
+//                            app: Terminal(),
+//                            icon: 'lib/images/icons/v2/compiled/terminal.png',
+//                            color: Colors.grey[900],
+//                            callback: toggleCallback),
+//                        AppLauncherPanelButton(
+//                            app: Files(),
+//                            icon: 'lib/images/icons/v2/compiled/files.png',
+//                            color: Colors.deepOrange,
+//                            callback: toggleCallback),
+//                        AppLauncherPanelButton(
+//                          app: Tasks(),
+//                          icon: 'lib/images/icons/v2/compiled/task.png',
+//                          color: Colors.cyan[900],
+//                          callback: toggleCallback,
+//                        ),
+//                        AppLauncherPanelButton(
+//                            app: Settings(),
+//                            icon: 'lib/images/icons/v2/compiled/settings.png',
+//                            color: Colors.deepOrange,
+//                            callback: toggleCallback),
+//                        AppLauncherPanelButton(
+//                            app: HisApp(),
+//                            icon: 'lib/images/icons/v2/compiled/theme.png',
+//                            color: Colors.grey[900],
+//                            callback: toggleCallback),
+//                      ]),
+//                  StatusTrayWidget(
+//                    toggleKey: KeyRing.statusToggleKey,
+//                    callback: (bool toggled) => setOverlayVisibility(
+//                      overlay: KeyRing.statusOverlayKey,
+//                      visible: toggled,
+//                    ),
+//                  ),
+//                ],
+//              ),
+//            ),
+//          ),
+//        ),
+
+        // WallpaperPicker(),
+//      ],
+//    ));
+// }
+
+  /*void _getTime() {
+    final DateTime now = DateTime.now();
+    final String formattedDateTime = _formatDateTime(now);
+    setState(() {
+      _timeString = formattedDateTime;
+    });
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+
+    return DateFormat('hh:mm').format(dateTime);
+  }*/
+
+//  List<Widget> wrappedLaunchers(List<AppLauncherButton> launcherList) {
+//    double positionOffSet = 10.0;
+//    List<Widget> list = [];
+//
+//    for (AppLauncherButton launcher in launcherList) {
+//      list.add(Positioned.directional(
+//          textDirection: TextDirection.ltr,
+//          start: positionOffSet,
+//          child: launcher));
+//      positionOffSet += 20;
+//    }
+//    return list;
+//  }
 }
