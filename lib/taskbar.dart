@@ -41,7 +41,7 @@ class Taskbar extends StatelessWidget {
             bottomLeft: Radius.circular(200),
             bottomRight: Radius.circular(200),
           ),
-      color : Color.fromRGBO(0, 0, 0, 0.949999988079071),
+      color : Color.fromRGBO(0, 0, 0, 1),
   )
       )
       ),Positioned(
