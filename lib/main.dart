@@ -22,7 +22,7 @@ limitations under the License.
 //import 'package:GeneratedApp/localization/localization.dart';
 //import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'quick_settings.dart';
+//import 'quick_settings.dart';
 //import 'window_space.dart';
 //import 'dart:async';
 import 'package:flutter/material.dart';
