@@ -68,8 +68,8 @@ class Taskbar extends StatelessWidget {
         top: 21.166667938232422,
         left: 21.166667938232422,
         child: SvgPicture.asset(
-        'assets/images/iconavfiber_manual_record_24px.svg',
-        semanticsLabel: 'iconavfiber_manual_record_24px'
+        'assets/images_svg/fiber_manual_record_24pxcirclelauncherthing.svg',
+        semanticsLabel: 'fiber_manual_record_24pxcirclelauncherthing'
       )
       ),
         ]

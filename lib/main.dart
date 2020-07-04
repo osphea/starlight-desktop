@@ -22,7 +22,7 @@ limitations under the License.
 //import 'package:GeneratedApp/localization/localization.dart';
 //import 'package:flutter_localizations/flutter_localizations.dart';
 
-//import 'quick_settings.dart';
+import 'quick_settings.dart';
 //import 'window_space.dart';
 //import 'dart:async';
 import 'package:flutter/material.dart';
@@ -30,8 +30,8 @@ import 'package:flutter/material.dart';
 //import 'menu.dart';
 //import 'themes/dynamic_theme.dart';
 //import 'themes/main.dart';
-import 'package:flutter/services.dart';
-//import 'widgets/system_overlay.dart';
+//import 'package:flutter/services.dart';
+import 'widgets/system_overlay.dart';
 //import 'widgets/toggle.dart';
 //import 'launcher_toggle.dart';
 //import 'status_tray.dart';
@@ -46,7 +46,7 @@ import 'taskbar.dart';
 //import 'applications/editor.dart';
 //import 'applications/terminal.dart';
 //import 'settings.dart';
-//import 'commons/key_ring.dart';
+import 'commons/key_ring.dart';
 //import 'commons/functions.dart';
 
 // * This code defines stuff needed for window space and quick settings and launcher
@@ -101,20 +101,20 @@ import 'taskbar.dart';
 void main() {
   /// To keep app in Portrait Mode
   //SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeRight]);
-  runApp(Pangolin());
+  runApp(Starlight());
 }
 
-class Pangolin extends StatefulWidget {
+class Starlight extends StatefulWidget {
   @override
-  _PangolinState createState() => _PangolinState();
+  _StarlightState createState() => _StarlightState();
 // localization, don't need that yet'
 //  static void setLocale(BuildContext context, Locale locale) {
-//    _PangolinState state = context.findAncestorStateOfType<_PangolinState>();
+//    _StarlightState state = context.findAncestorStateOfType<_StarlightState>();
 //    state.setLocale(locale);
 //  }
 }
 
-class _PangolinState extends State<Pangolin> {
+class _StarlightState extends State<Starlight> {
 // localization, don't need that yet '
 //  Locale _locale;
 
@@ -142,9 +142,9 @@ class _PangolinState extends State<Pangolin> {
 //        loadBrightnessOnStart: true,
 //        themedWidgetBuilder: (BuildContext context, ThemeData theme) {
           return MaterialApp(
-            title: 'Pangolin Desktop',
+            title: 'Starlight Desktop',
             //theme: theme,
-            home: MyHomePage(title: 'Pangolin Desktop'),
+            home: MyHomePage(title: 'Starlight Desktop'),
 //            supportedLocales: [
 //              Locale("en", ""),
 //              Locale("de", ""),
@@ -173,9 +173,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
-  //final Tween<double> _overlayOpacityTween =
-      //Tween<double>(begin: 0.0, end: 1.0);
+  final Tween<double> _overlayScaleTween = Tween<double>(begin: 0.9, end: 1.0);
+  final Tween<double> _overlayOpacityTween =
+      Tween<double>(begin: 0.0, end: 1.0);
 
   //String _timeString;
   /*@override
@@ -195,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/somethingelse.jpg"),
+              image: AssetImage("assets/images_svg/somethingelse.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -249,46 +249,46 @@ class _MyHomePageState extends State<MyHomePage> {
 //        ),
 
         // 4 - Quick settings panel
-//        SystemOverlay(
-//          key: KeyRing.statusOverlayKey,
-//          builder: (Animation<double> animation) => Positioned(
-//            right: 5.0,
-//            bottom: 55.0,
-//            child: AnimatedBuilder(
-//              animation: animation,
-//              builder: (BuildContext context, Widget child) => FadeTransition(
-//                opacity: _overlayOpacityTween.animate(animation),
-//                child: ScaleTransition(
-//                  scale: _overlayScaleTween.animate(animation),
-//                  alignment: FractionalOffset.bottomRight,
-//                  child: child,
-//                ),
-//              ),
-//              child: ClipRRect(
-//                borderRadius: BorderRadius.circular(5.0),
-//                child: Stack(children: [
-//                  BackdropFilter(
-//                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-//                    child: Container(
-//                      decoration:
-//                          BoxDecoration(color: Colors.black.withOpacity(0.75)),
-//                      child: QuickSettings(),
-//                    ),
-//                  ),
-//                ]),
-//              ),
-//            ),
-//          ),
-//          callback: (bool visible) {
-//            KeyRing.statusToggleKey.currentState.toggled = visible;
-//          },
-//        ),
+        SystemOverlay(
+          key: KeyRing.statusOverlayKey,
+          builder: (Animation<double> animation) => Positioned(
+            right: 5.0,
+            bottom: 55.0,
+            child: AnimatedBuilder(
+              animation: animation,
+              builder: (BuildContext context, Widget child) => FadeTransition(
+                opacity: _overlayOpacityTween.animate(animation),
+                child: ScaleTransition(
+                  scale: _overlayScaleTween.animate(animation),
+                  alignment: FractionalOffset.bottomRight,
+                  child: child,
+                ),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Stack(children: [
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                    child: Container(
+                      decoration:
+                          BoxDecoration(color: Colors.black.withOpacity(0.75)),
+                      child: QuickSettings(),
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+          callback: (bool visible) {
+            KeyRing.statusToggleKey.currentState.toggled = visible;
+          },
+        ),
 
         // 5 - The bottom bar
         Positioned(
           left: 0.0,
           right: 0.0,
-          bottom: 20.0,
+          bottom: 15.0,
           child: Center(
             child: Taskbar(
             ),
